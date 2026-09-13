@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>WFPD Apparatus IT & Radio Support Console</title>
+  <title>WFPD Apparatus IT Support Console</title>
   <!-- Load fonts to match the WFPD Radio Manual -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1055,7 +1055,7 @@
       <img src="logo.png" alt="WFPD Logo" class="header-logo-img">
       <div class="header-title-group">
         <p>WOODSIDE FIRE PROTECTION DISTRICT</p>
-        <h1>Apparatus IT & Radio Support Console</h1>
+        <h1>Apparatus IT Support Console</h1>
       </div>
     </div>
 
@@ -1115,10 +1115,11 @@
           <div class="lane-box lane-box-in">
             <div class="lane-box-title">In Your Lane</div>
             <ul class="lane-box-list">
-              <li>Reboot Cradlepoint, work iPhones or iPads.</li>
-              <li>Confirm iPad is on the primary <code>WFPD-[UNIT]</code> SSID.</li>
-              <li>Inspect cables, routing connections, and SIM card seats.</li>
-              <li>Toggle Airplane Mode or renew DHCP leases on mobile devices.</li>
+              <li>Reboot Cradlepoint, work iPhones, or work iPads.</li>
+              <li>Confirm the cab iPad is on ops Wi‑Fi: <code>WFPD-[UNIT]</code> (use the QR below). Never join <code>-GUEST</code>.</li>
+              <li>Do <strong>not</strong> add station / building Wi‑Fi to the iPad. That Wi‑Fi is for the Cradlepoint, not the tablet.</li>
+              <li>Inspect antenna/power cables and SIM seats; toggle Airplane Mode 10 seconds if cellular is dead.</li>
+              <li>Follow the symptom cards below. If unsure, escalate — don’t “experiment” with new networks.</li>
             </ul>
           </div>
           
@@ -1126,10 +1127,11 @@
           <div class="lane-box lane-box-out">
             <div class="lane-box-title">Escalate to Erik</div>
             <ul class="lane-box-list">
-              <li>Modifying router WAN priority rules or NetCloud profiles.</li>
-              <li>MDM enrollment overrides, device wipes, or profile resets.</li>
-              <li>Cradlepoint firmware upgrades or factory defaults.</li>
-              <li>Coordinating with FirstNet/Verizon support or Apple Business.</li>
+              <li>Changing Cradlepoint WAN priority, NetCloud groups/profiles, or firmware.</li>
+              <li>Adding/removing Wi‑Fi networks on the router or inventing new SSIDs.</li>
+              <li>MDM enrollment, wipes, profile resets, or personal Apple ID sign-in on work devices.</li>
+              <li>Factory defaulting a router.</li>
+              <li>Carrier / FirstNet / Apple Business tickets.</li>
             </ul>
           </div>
         </div>
@@ -1142,6 +1144,8 @@
         <div>
           <h2 class="console-section-title">Apparatus IT Support Console</h2>
           <p class="console-section-desc">Locate symptoms below to inspect recommended actions and escalation triggers.</p>
+          <p class="console-section-desc" style="margin-top: -8px;">The cab iPad should stay on <strong>engine ops Wi‑Fi</strong> (<code>WFPD-[UNIT]</code>). That Wi‑Fi comes from the Cradlepoint on the apparatus. The Cradlepoint — not the iPad — chooses how traffic gets out (cellular / Starlink / station Wi‑Fi near the bay).<br>
+          <strong>Tablet Command</strong> and <strong>Versaterm</strong> both depend on that path staying clean. Joining station Wi‑Fi on the iPad skips the Cradlepoint and causes hard-to-diagnose map/CAD failures.</p>
         </div>
 
         <!-- ── TECHNICAL CARDS GRID ── -->
@@ -1159,13 +1163,15 @@
             <div class="card-symptom-box">Tablet Command iPad shows red offline banner, and dispatch CAD logs fail to load.</div>
             <div class="card-body-title">Correction Action:</div>
             <ul class="card-list">
-              <li>Verify iPad is on primary network: <code>WFPD-[UNIT]</code>.</li>
-              <li>Never connect to the <code>-GUEST</code> network (guest isolation firewall blocks CAD sync routing).</li>
-              <li>Toggle iPad WiFi off/on to renew DHCP lease. Verify IP resolves to static reservation <code>10.7.X.50</code>.</li>
+              <li>Confirm Wi‑Fi is <strong>ON</strong> and joined to ops: <code>WFPD-[UNIT]</code> (scan the apparatus QR on this page).</li>
+              <li><strong>Do not</strong> join <code>WFPD-[UNIT]-GUEST</code> (guest isolation blocks CAD).</li>
+              <li><strong>Do not</strong> join station / building Wi‑Fi on the iPad. If it’s listed under Settings → Wi‑Fi, open ⓘ → <strong>Forget This Network</strong>, then rejoin <code>WFPD-[UNIT]</code> only.</li>
+              <li>Toggle Wi‑Fi off/on once. Confirm the iPad IP is the reserved address ending in <code>.50</code> (Settings → Wi‑Fi → ⓘ on <code>WFPD-[UNIT]</code>).</li>
+              <li>Optional: Settings → Wi‑Fi → ⓘ → <strong>Private Wi‑Fi Address</strong> → Off for the ops network.</li>
             </ul>
             <div class="card-footer">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-              Escalate: If IP resolves to <code>.50</code> but CAD remains red.
+              Escalate: If the iPad is on <code>WFPD-[UNIT]</code>, has a <code>.50</code> address, and CAD is still red — escalate to Erik (don’t add other Wi‑Fi to “fix” it).
             </div>
           </div>
 
@@ -1181,9 +1187,10 @@
             <div class="card-symptom-box">Rig primary cellular WAN fails; emergency internet link is required.</div>
             <div class="card-body-title">Correction Action:</div>
             <ul class="card-list">
-              <li>Connect work iPad to Cradlepoint IBR1900 USB port using Apple USB cable.</li>
-              <li>On the iPad, open Settings -> <code>Personal Hotspot</code> and toggle it ON.</li>
-              <li>Cradlepoint will auto-detect the USB interface as an active WAN fallback connection.</li>
+              <li>Connect the work iPad to the Cradlepoint <strong>USB</strong> port with an Apple USB cable. (Router may be labeled <strong>R1900</strong> or <strong>IBR1900</strong> depending on apparatus.)</li>
+              <li>iPad: Settings → <code>Personal Hotspot</code> → ON.</li>
+              <li>Cradlepoint should take USB as emergency WAN. Use only when primary WAN is dead.</li>
+              <li>Turn Personal Hotspot <strong>OFF</strong> when normal WAN is back so you don’t stay on a weak tether.</li>
             </ul>
             <div class="card-footer">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
@@ -1225,13 +1232,14 @@
             <div class="card-symptom-box">Work app (Tablet Command, Maps) fails to update or gets stuck on "Waiting".</div>
             <div class="card-body-title">Correction Action:</div>
             <ul class="card-list">
-              <li>MDM blocks large app downloads over cell data. Connect to station WiFi or high-speed rig WiFi.</li>
-              <li>Go to Settings -> General -> <code>VPN & Device Management</code> to verify the MDM profile is active.</li>
-              <li>Do not sign into personal Apple IDs; updates are managed automatically.</li>
+              <li>MDM often blocks large app downloads on cellular. Prefer the apparatus ops Wi‑Fi <code>WFPD-[UNIT]</code> (or wait until the rig has a solid Cradlepoint WAN).</li>
+              <li><strong>Do not</strong> add station / building Wi‑Fi to the iPad for updates. Station Wi‑Fi belongs on the Cradlepoint WAN, not the tablet.</li>
+              <li>Settings → General → <code>VPN & Device Management</code> — confirm the work MDM profile is present.</li>
+              <li>Do not sign into a personal Apple ID on work devices; updates are managed.</li>
             </ul>
             <div class="card-footer">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-              Escalate: Wipes, MDM token resets.
+              Escalate: Wipes, MDM token resets, or apps stuck on Waiting after 30+ minutes on ops Wi‑Fi.
             </div>
           </div>
 
@@ -1248,8 +1256,9 @@
             <div class="card-symptom-box">Dispatch reports "you are not tracking on CAD" or your unit is missing from dispatch maps.</div>
             <div class="card-body-title">Correction Action:</div>
             <ul class="card-list">
-              <li>Confirm with dispatch that they have the correct <strong>MMI</strong> (Mobile Mobile Identifier) assigned to your unit in CAD.</li>
-              <li>Verify the Cradlepoint router's <strong>GPS LED</strong> is <strong>solid blue</strong> (on the router front panel).</li>
+              <li><strong>Step 0:</strong> Confirm the cab iPad is on <code>WFPD-[UNIT]</code> (not guest, not station Wi‑Fi). Wrong Wi‑Fi can break Tablet Command even when Versaterm is a separate path — check both.</li>
+              <li>Confirm with Dispatch that the correct <strong>MMI</strong> (Mobile Modem Identifier) is assigned to this unit in CAD.</li>
+              <li>On the Cradlepoint <strong>R1900</strong>, GPS indicator must be <strong>solid blue</strong>. Flashing or off = no GPS lock.</li>
               <div style="display: flex; align-items: center; gap: 8px; margin: 8px 0; background: rgba(139, 30, 30, 0.04); border: 1.5px dashed var(--gold); padding: 8px 12px; border-radius: 6px;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
                   <circle cx="12" cy="12" r="8"></circle>
@@ -1265,24 +1274,25 @@
                   Must be <strong>Solid Blue</strong>. If flashing or unlit, GPS lock is missing.
                 </div>
               </div>
-              <li><strong>Verify Systems Separately</strong>: Verify status on both <strong>Tablet Command</strong> and <strong>Versaterm (CAD)</strong> as they serve different purposes:
+              <li>Remember the split:
                 <ul style="margin-top: 4px; padding-left: 15px; list-style-type: circle; font-size: 11px;">
-                  <li><strong>Versaterm</strong> tracks your vehicle for Dispatch dispatchers.</li>
-                  <li><strong>Tablet Command</strong> tracks the incident map location for your crew.</li>
+                  <li><strong>Versaterm</strong> = vehicle track for Dispatch.</li>
+                  <li><strong>Tablet Command</strong> = incident/map view for the crew.</li>
                 </ul>
               </li>
-              <li><strong>Power Cycle the Router</strong>: 
+              <li><strong>Power-cycle the Cradlepoint</strong>: unplug power 20 seconds, reconnect firmly.
                 <ul style="margin-top: 4px; padding-left: 15px; list-style-type: circle; font-size: 11px;">
                   <li>Locate the Cradlepoint R1900 router (usually in the wiring bay or device cabinet).</li>
                   <li>Unplug the black power cable connector from the back of the router.</li>
                   <li>Wait <strong>20 seconds</strong>, then plug it back in firmly to reboot the hardware.</li>
                 </ul>
               </li>
-              <li>GPS tracking relies on ignition sense. Cycle vehicle engine off and back on to reboot the AVL tracking unit.</li>
+              <li>Cycle ignition (off/on) if AVL is ignition-sensed and still dead after router reboot.</li>
+              <li>Rebooting only the iPad will <strong>not</strong> fix Versaterm vehicle tracking.</li>
             </ul>
             <div class="card-footer">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-              Escalate: Required if GPS light is off or flashing.
+              Escalate: GPS light off/flashing after reboot, or still not tracking after MMI confirm + power cycle.
             </div>
           </div>
 
